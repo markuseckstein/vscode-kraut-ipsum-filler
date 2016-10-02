@@ -4,11 +4,19 @@
   "description": "Fetches some traditional German filler text from the API at www.krautipsum.com and inserts it at the current position in the current document.",
   "version": "0.0.1",
   "publisher": "maec",
+  "author":{
+    "name": "Markus Eckstein"
+  },
   "engines": {
     "vscode": "^1.5.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markuseckstein/vscode-kraut-ipsum-filler.git"
+  },
   "categories": [
-    "Other"
+    "Snippets",
+    "Productivity"
   ],
   "activationEvents": [
     "onCommand:extension.insertKraut",
@@ -41,8 +49,5 @@
     "mocha": "^2.3.3",
     "@types/node": "^6.0.40",
     "@types/mocha": "^2.2.32"
-  },
-  "dependencies": {
-    "http": "0.0.0"
   }
 }
