@@ -24,6 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         let parseResult = parseEmmet(line);
         let numParagraphs = parseResult.numberOfKrauts;
+        numParagraphs = sanitizeResult(numParagraphs);
 
         if (numParagraphs === 0) {
             editor.edit((editBuilder: vscode.TextEditorEdit) => {
@@ -77,6 +78,15 @@ function parseEmmet(text: string): ParseResult {
         }
     }
     return { numberOfKrauts, startPos, endPos };
+}
+
+function sanitizeResult(count:number) {
+    if (count < 0) {
+        count = 0;
+    } else if (count > 5) {
+        count = 5;
+    }
+    return count;
 }
 
 type ParseResult = {
