@@ -3,6 +3,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import * as http from 'http';
+import { getKrautText } from './kraut-loader';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -17,24 +18,35 @@ export function activate(context: vscode.ExtensionContext) {
     // The commandId parameter must match the command field in package.json
     let disposable = vscode.commands.registerCommand('extension.insertKraut', () => {
         // The code you place here will be executed every time your command is executed
-        http.get({
-            host: 'www.krautipsum.com',
-            path: '/api/kraut'
-        }, (response) => {
-            let kraut = '';
-            response.on('data', (data) => {
-                console.log(data);
-                kraut += data;
+        let editor = vscode.window.activeTextEditor;
+        let currentPos = editor.selection.active;
+        let line = editor.document.lineAt(currentPos.line).text;
+
+        let parseResult = parseEmmet(line);
+        let numParagraphs = parseResult.numberOfKrauts;
+
+        if (numParagraphs === 0) {
+            editor.edit((editBuilder: vscode.TextEditorEdit) => {
+                editBuilder.insert(currentPos, '\t');
+            }, { undoStopBefore: true, undoStopAfter: true });
+            return;
+        }
+
+        let promiseArray: Promise<string>[] = [];
+        for (let i = 0; i < numParagraphs; i++) {
+            promiseArray.push(getKrautText());
+        }
+
+        Promise.all(promiseArray)
+            .then((values: string[]) => {
+                let insertText = values.join('\n\n');
+                let currentPos = editor.selection.active;
+
+                editor.edit((editBuilder: vscode.TextEditorEdit) => {
+                    editBuilder.delete(new vscode.Range(new vscode.Position(currentPos.line, parseResult.startPos), new vscode.Position(currentPos.line, parseResult.endPos)));
+                    editBuilder.insert(currentPos, insertText);
+                }, { undoStopBefore: true, undoStopAfter: true });
             });
-            response.on('end', () => {
-                let krautString = JSON.parse(kraut).kraut;
-                console.log(krautString);
-                let func = (editBuilder: vscode.TextEditorEdit) => {
-                    insertKraut(editBuilder, krautString);
-                };
-                vscode.window.activeTextEditor.edit(func, { undoStopBefore: true, undoStopAfter: true });
-            });
-        })
     });
 
     context.subscriptions.push(disposable);
@@ -44,9 +56,32 @@ export function activate(context: vscode.ExtensionContext) {
 export function deactivate() {
 }
 
-function insertKraut(editBuilder: vscode.TextEditorEdit, content: string): void {
-    editBuilder.insert(new vscode.Position(0, 0), content);
+
+function parseEmmet(text: string): ParseResult {
+    const regexWithNum = /.*(kraut\*(\d+)).*/gi; // searches for 'foo bar kraut*2';
+    const regexWithoutNum = /.*(kraut).*/gi; // searches for 'foo bar kraut';
+    let result = regexWithNum.exec(text);
+    let numberOfKrauts = 0;
+    let startPos = 0;
+    let endPos = 0;
+    if (result) {
+        numberOfKrauts = parseInt(result[2]);
+        startPos = text.indexOf(result[1]);
+        endPos = startPos + result[1].length;
+    } else {
+        result = regexWithoutNum.exec(text);
+        if (result) {
+            numberOfKrauts = 1;
+            startPos = text.indexOf(result[1]);
+            endPos = startPos + result[1].length;
+        }
+    }
+    return { numberOfKrauts, startPos, endPos };
 }
 
-
+type ParseResult = {
+    numberOfKrauts: number;
+    startPos: number;
+    endPos: number;
+}
 

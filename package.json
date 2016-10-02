@@ -11,7 +11,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.insertKraut"
+    "onCommand:extension.insertKraut",
+    "*"
   ],
   "main": "./out/src/extension",
   "contributes": {
@@ -20,7 +21,14 @@
         "command": "extension.insertKraut",
         "title": "Kraut einfügen"
       }
-    ]
+    ],
+    "keybindings": [
+            {
+                "command": "extension.insertKraut",
+                "key": "tab",
+                "when": "editorTextFocus"
+            }
+        ]
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
