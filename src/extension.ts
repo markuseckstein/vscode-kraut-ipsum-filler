@@ -5,7 +5,7 @@ import { getKrautText } from './kraut-loader';
 
 export function activate(context: vscode.ExtensionContext) {
 
-    let disposable = vscode.commands.registerCommand('extension.insertKraut', () => {
+    let disposableEmmet = vscode.commands.registerCommand('extension.insertKrautEmmet', () => {
         let editor = vscode.window.activeTextEditor;
         let currentPos = editor.selection.active;
         let line = editor.document.lineAt(currentPos.line).text;
@@ -38,7 +38,22 @@ export function activate(context: vscode.ExtensionContext) {
             });
     });
 
-    context.subscriptions.push(disposable);
+    let disposableMenu = vscode.commands.registerCommand('extension.insertKrautMenu', () => {
+        let editor = vscode.window.activeTextEditor;
+        let currentPos = editor.selection.active;
+        let line = editor.document.lineAt(currentPos.line).text;
+
+        getKrautText()
+            .then(kraut => {
+                let currentPos = editor.selection.active;
+                editor.edit((editBuilder: vscode.TextEditorEdit) => {
+                    editBuilder.insert(currentPos, kraut);
+                }, { undoStopBefore: true, undoStopAfter: true });
+            });
+    });
+
+    context.subscriptions.push(disposableEmmet);
+    context.subscriptions.push(disposableMenu);
 }
 
 export function deactivate() {
@@ -67,7 +82,7 @@ export function parseEmmet(text: string): ParseResult {
     return { numberOfKrauts, startPos, endPos };
 }
 
-export function sanitizeResult(count:number) {
+export function sanitizeResult(count: number) {
     if (count < 0) {
         count = 0;
     } else if (count > 5) {

@@ -15,7 +15,7 @@
         "color": "#E8C547",
         "theme": "dark"
     },
-    "version": "0.0.6",
+    "version": "0.0.8",
     "publisher": "mseckst",
     "author": {
         "name": "Markus Eckstein"
@@ -31,20 +31,20 @@
         "Snippets"
     ],
     "activationEvents": [
-        "onCommand:extension.insertKraut",
+        "onCommand:extension.insertKrautMenu",
         "*"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.insertKraut",
+                "command": "extension.insertKrautMenu",
                 "title": "Kraut einfügen"
             }
         ],
         "keybindings": [
             {
-                "command": "extension.insertKraut",
+                "command": "extension.insertKrautEmmet",
                 "key": "tab",
                 "when": "editorTextFocus"
             }

@@ -22,7 +22,7 @@ This extension gets its filler texts from the great Kraut Ipsum German Filler Te
 ## Release Notes
 
 
-### 0.0.6
+### 0.0.8
 
 Initial release.
 
