@@ -1,53 +1,65 @@
 {
-  "name": "kraut-ipsum-filler",
-  "displayName": "Kraut Ipsum Filler Text",
-  "description": "Fetches some traditional German filler text from the API at www.krautipsum.com and inserts it at the current position in the current document.",
-  "version": "0.0.1",
-  "publisher": "maec",
-  "author":{
-    "name": "Markus Eckstein"
-  },
-  "engines": {
-    "vscode": "^1.5.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/markuseckstein/vscode-kraut-ipsum-filler.git"
-  },
-  "categories": [
-    "Snippets",
-    "Productivity"
-  ],
-  "activationEvents": [
-    "onCommand:extension.insertKraut",
-    "*"
-  ],
-  "main": "./out/src/extension",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.insertKraut",
-        "title": "Kraut einfügen"
-      }
+    "name": "kraut-ipsum-filler",
+    "displayName": "Kraut Ipsum Filler Text",
+    "description": "Fetches some traditional German filler text from the API at www.krautipsum.com and inserts it at the current position in the current document.",
+    "keywords": [
+        "Lorem",
+        "Ipsum",
+        "kraut",
+        "german",
+        "filler text"
     ],
-    "keybindings": [
+    "license": "MIT",
+    "icon": "images/krautIcon.png",
+    "galleryBanner": {
+        "color": "#E8C547",
+        "theme": "dark"
+    },
+    "version": "0.0.5",
+    "publisher": "mseckst",
+    "author": {
+        "name": "Markus Eckstein"
+    },
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/markuseckstein/vscode-kraut-ipsum-filler.git"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "activationEvents": [
+        "onCommand:extension.insertKraut",
+        "*"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.insertKraut",
+                "title": "Kraut einfügen"
+            }
+        ],
+        "keybindings": [
             {
                 "command": "extension.insertKraut",
                 "key": "tab",
                 "when": "editorTextFocus"
             }
         ]
-  },
-  "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
-  },
-  "devDependencies": {
-    "typescript": "^2.0.3",
-    "vscode": "^1.0.0",
-    "mocha": "^2.3.3",
-    "@types/node": "^6.0.40",
-    "@types/mocha": "^2.2.32"
-  }
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    }
 }
