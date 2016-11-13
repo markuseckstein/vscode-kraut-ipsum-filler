@@ -15,7 +15,7 @@
         "color": "#E8C547",
         "theme": "dark"
     },
-    "version": "0.0.8",
+    "version": "1.0.0",
     "publisher": "mseckst",
     "author": {
         "name": "Markus Eckstein"
@@ -45,7 +45,7 @@
         "keybindings": [
             {
                 "command": "extension.insertKrautEmmet",
-                "key": "tab",
+                "key": "ctrl+tab",
                 "when": "editorTextFocus"
             }
         ]

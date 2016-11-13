@@ -9,8 +9,9 @@ You can use the Command Palette to execute the command `Kraut einfügen` to inse
 
 ### Emmet style
 
-It is also possible to just type `kraut` and hit `tab` in the text editor to insert a paragraph of Kraut Ipsum at the current position.
-To insert more paragraphs at once, use `kraut*3` and hit `tab`. (Note: you can insert at most 5 paragraphs in one go).
+It is also possible to just type `kraut` and hit `ctrl + tab` in the text editor to insert a paragraph of Kraut Ipsum at the current position.
+To insert more paragraphs at once, use `kraut*3` and hit `ctrl + tab`. (Note: you can insert at most 5 paragraphs in one go). Currently it is not possible to use only `tab` as trigger, because 
+this would break the default emmet implementation of VSCode. If you know how to fix this, I would appreciate a pull request.
 
 ## Where is all the data from?
 
@@ -22,7 +23,7 @@ This extension gets its filler texts from the great Kraut Ipsum German Filler Te
 ## Release Notes
 
 
-### 0.0.8
+### 1.0.0
 
-Initial release.
+Now shortcut (ctrl + tab) to trigger kraut generation.
 
