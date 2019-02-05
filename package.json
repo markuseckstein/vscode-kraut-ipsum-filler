@@ -1,65 +1,65 @@
 {
-    "name": "kraut-ipsum-filler",
-    "displayName": "Kraut Ipsum Filler Text",
-    "description": "Fetches some traditional German filler text from the API at www.krautipsum.com and inserts it at the current position in the current document.",
-    "keywords": [
-        "Lorem",
-        "Ipsum",
-        "kraut",
-        "german",
-        "filler text"
+  "name": "kraut-ipsum-filler",
+  "displayName": "Kraut Ipsum Filler Text",
+  "description": "Fetches some traditional German filler text from the API at www.krautipsum.com and inserts it at the current position in the current document.",
+  "keywords": [
+    "Lorem",
+    "Ipsum",
+    "kraut",
+    "german",
+    "filler text"
+  ],
+  "license": "MIT",
+  "icon": "images/krautIcon.png",
+  "galleryBanner": {
+    "color": "#E8C547",
+    "theme": "dark"
+  },
+  "version": "1.1.0",
+  "publisher": "mseckst",
+  "author": {
+    "name": "Markus Eckstein"
+  },
+  "engines": {
+    "vscode": "^1.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markuseckstein/vscode-kraut-ipsum-filler.git"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "activationEvents": [
+    "onCommand:extension.insertKrautMenu",
+    "*"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.insertKrautMenu",
+        "title": "Kraut einfügen"
+      }
     ],
-    "license": "MIT",
-    "icon": "images/krautIcon.png",
-    "galleryBanner": {
-        "color": "#E8C547",
-        "theme": "dark"
-    },
-    "version": "1.0.0",
-    "publisher": "mseckst",
-    "author": {
-        "name": "Markus Eckstein"
-    },
-    "engines": {
-        "vscode": "^1.5.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/markuseckstein/vscode-kraut-ipsum-filler.git"
-    },
-    "categories": [
-        "Snippets"
-    ],
-    "activationEvents": [
-        "onCommand:extension.insertKrautMenu",
-        "*"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [
-            {
-                "command": "extension.insertKrautMenu",
-                "title": "Kraut einfügen"
-            }
-        ],
-        "keybindings": [
-            {
-                "command": "extension.insertKrautEmmet",
-                "key": "ctrl+tab",
-                "when": "editorTextFocus"
-            }
-        ]
-    },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
-    }
+    "keybindings": [
+      {
+        "command": "extension.insertKrautEmmet",
+        "key": "ctrl+tab",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "typescript": "^3.3.1",
+    "vscode": "^1.1.28",
+    "mocha": "^5.2.0",
+    "@types/node": "^10.12.21",
+    "@types/mocha": "^5.2.5"
+  }
 }
