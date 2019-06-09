@@ -30,3 +30,7 @@ Now shortcut (ctrl + tab) to trigger kraut generation.
 ### 1.1.0
 
 Adapt to krautipsum.com URL and protocol changes. Add error logging.
+
+### 1.1.1
+
+Update dependencies.
