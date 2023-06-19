@@ -56,7 +56,7 @@
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "devDependencies": {
-    "typescript": "3.5.1",
+    "typescript": "3.9.10",
     "vscode": "1.1.35",
     "mocha": "6.2.1",
     "@types/node": "12.0.7",
